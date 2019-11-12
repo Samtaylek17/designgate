@@ -3,6 +3,33 @@
   include 'includes/header.php';
   include 'includes/navigation.php';
 ?>
+
+<?php
+    function sanitize($dirty){
+      return htmlentities($dirty, ENT_QUOTES, "UTF-8");
+  }
+
+  $firstname = ((isset($_POST['firstname'])) ? sanitize($_POST['firstname']) : '');
+if(!preg_match("/^[a-zA-Z ]*$/",$firstname)){
+    $errors[] = 'Only Letters and whitespaces are allowed';
+}
+
+$lastname = ((isset($_POST['lastname'])) ? sanitize($_POST['lastname']) : '');
+if(!preg_match("/^[a-zA-Z ]*$/",$lastname)){
+    $errors[] = 'Only Letters and whitespaces are allowed';
+}
+
+$email = ((isset($_POST['email']))?sanitize($_POST['email']):'');
+$email = trim($email);
+$message = ((isset($_POST['message']))?sanitize($_POST['message']):'');
+$message = trim($message);
+            
+$con->query("INSERT INTO contact (firstname, lastname, email, message) 
+VALUES ('$firstname','$lastname','$email','$message')");
+            
+        
+?>
+
       <div class="ftco-blocks-cover-1">
       <div class="ftco-cover-1 overlay" style="background-image: url('images/hero_1.jpg')">
         <div class="container">
@@ -27,8 +54,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-5 pr-md-5 mr-auto">
-            <h2 class="line-bottom">You have a project in mind? Get a Quotation today.</h2>
-            <p>If you have a project in mind or a constructioon idea, get in touch today and get 
+            <h2 class="line-bottom">Do you have a project in mind? Get a Quotation today.</h2>
+            <p>If you have a project in mind or a construction idea, get in touch today and get 
               a qoute as soon as possible.  </p>
           </div>
           <div class="col-md-6">
@@ -36,16 +63,16 @@
                 <h2>Get Quotation</h2>
                 <form action="contact.php" method="post">
                   <div class="form-group">
-                    <input type="text" name="firstname" class="form-control" placeholder="First Name">
+                    <input type="text" name="firstname" class="form-control" placeholder="First Name" value="<?= $firstname ?>">
                   </div>
                   <div class="form-group">
-                    <input type="text" name="lastname" class="form-control" placeholder="Last Name">
+                    <input type="text" name="lastname" class="form-control" placeholder="Last Name" value="<?= $lastname ?>">
                   </div>
                   <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email">
+                    <input type="email" name="email" class="form-control" placeholder="Email" value="<?= $email ?>">
                   </div>
                   <div class="form-group">
-                    <textarea name="" class="form-control" id="" cols="30" rows="5" placeholder="Message"></textarea>
+                    <textarea name="message" class="form-control" id="" cols="30" rows="5" placeholder="Message" value="<?= $message ?>"></textarea>
                   </div>
                   <div class="form-group">
                     <input type="submit" value="Send Message" class="btn btn-primary px-5">

@@ -1,22 +1,28 @@
 <?php 
+  require_once 'includes/db.php';
   include 'includes/header.php';
   include 'includes/navigation.php';
 ?>
 
-<?php 
-  $firstname = ((isset($_POST['firstname'])) ? sanitize($_POST['firstname']) : '');
-    if(!preg_match("/^[a-zA-Z ]*$/",$firstname)){
-      $errors[] = 'Only Letters and whitespaces are allowed';
+<?php
+    function sanitize($dirty){
+      return htmlentities($dirty, ENT_QUOTES, "UTF-8");
   }
-  $lastname = ((isset($_POST['lastname'])) ? sanitize($_POST['lastname']) : '');
-    if(!preg_match("/^[a-zA-Z ]*$/",$lastname)){
-      $errors[] = 'Only Letters and whitespaces are allowed';
-  }
-  $email = ((isset($_POST['email'])) ? sanitize($_POST['email']) : '');
-  $email = trim($email);
-  $message = ((isset($_POST['message'])) ? sanitize($_POST['message']) : '');
-  $message = trim($message);
 
+  $firstname = ((isset($_POST['firstname'])) ? sanitize($_POST['firstname']) : '');
+if(!preg_match("/^[a-zA-Z ]*$/",$firstname)){
+    $errors[] = 'Only Letters and whitespaces are allowed';
+}
+
+$lastname = ((isset($_POST['lastname'])) ? sanitize($_POST['lastname']) : '');
+if(!preg_match("/^[a-zA-Z ]*$/",$lastname)){
+    $errors[] = 'Only Letters and whitespaces are allowed';
+}
+
+$email = ((isset($_POST['email']))?sanitize($_POST['email']):'');
+$email = trim($email);
+$message = ((isset($_POST['message']))?sanitize($_POST['message']):'');
+$message = trim($message);
 ?>
 
       <div class="ftco-blocks-cover-1">
@@ -43,26 +49,34 @@
         </div>
       </div>
         <div class="row">
+
+        <?php 
+            
+              $con->query("INSERT INTO contact (firstname, lastname, email, message) 
+              VALUES ('$firstname','$lastname','$email','$message')");
+            
+        ?>
+
           <div class="col-lg-8 mb-5" >
-            <form action="#" method="post">
+            <form action="contact.php" method="post">
               <div class="form-group row">
                 <div class="col-md-6 mb-4 mb-lg-0">
-                  <input type="text" class="form-control" placeholder="First name">
+                  <input type="text" name="firstname" class="form-control" placeholder="First name" value="<?= $firstname ?>">
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" placeholder="First name">
+                  <input type="text" name="lastname" class="form-control" placeholder="Last name" value="<?= $lastname ?>">
                 </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-12">
-                  <input type="text" class="form-control" placeholder="Email address">
+                  <input type="text" name="email" class="form-control" placeholder="Email address" value="<?= $email ?>">
                 </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-12">
-                  <textarea name="" id="" class="form-control" placeholder="Write your message." cols="30" rows="10"></textarea>
+                  <textarea name="message" id="" class="form-control" value="<?= $message ?>" placeholder="Write your message." cols="30" rows="10"></textarea>
                 </div>
               </div>
               <div class="form-group row">
