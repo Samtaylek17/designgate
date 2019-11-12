@@ -52,8 +52,7 @@ $message = trim($message);
 
         <?php 
             
-              $con->query("INSERT INTO contact (firstname, lastname, email, message) 
-              VALUES ('$firstname','$lastname','$email','$message')");
+              $con->query("INSERT INTO contact (firstname, lastname, email, message) VALUES ('$firstname','$lastname','$email','$message')");
             
         ?>
 
