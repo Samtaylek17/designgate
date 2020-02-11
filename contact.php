@@ -26,12 +26,12 @@ $message = trim($message);
 ?>
 
       <div class="ftco-blocks-cover-1">
-      <div class="ftco-cover-1 overlay innerpage" style="background-image: url('images/hero_2.jpg')">
+      <div class="ftco-cover-1 overlay innerbanner" style="background-image: url('images/hero_2.jpg')">
         <div class="container">
           <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 text-center">
               <h1>Contact Us</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p>We are the choice of leaders in the Architecture, Engineering and Construction Industry</p>
             </div>
           </div>
         </div>
@@ -45,14 +45,18 @@ $message = trim($message);
         <div class="row justify-content-center text-center">
         <div class="col-7 text-center mb-5">
           <h2>Contact Us</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo assumenda, dolorum necessitatibus eius earum voluptates sed!</p>
+          <p>We would love to hear from you. Kindly take a moment to fill the form below and describe 
+            your project requirements. We will get back to you shortly.
+          </p>
         </div>
       </div>
         <div class="row">
 
         <?php 
-            
+            if($_POST){
               $con->query("INSERT INTO contact (firstname, lastname, email, message) VALUES ('$firstname','$lastname','$email','$message')");
+            }
+              
             
         ?>
 
@@ -91,9 +95,9 @@ $message = trim($message);
               <ul class="list-unstyled footer-link">
                 <li class="d-block mb-3">
                   <span class="d-block text-black">Address:</span>
-                  <span>34 Street Name, City Name Here, United States</span></li>
-                <li class="d-block mb-3"><span class="d-block text-black">Phone:</span><span>+1 242 4942 290</span></li>
-                <li class="d-block mb-3"><span class="d-block text-black">Email:</span><span>info@yourdomain.com</span></li>
+                  <span>55, Moleye Street, Alagomeji, Yaba, Lagos</span></li>
+                <li class="d-block mb-3"><span class="d-block text-black">Phone:</span><span>+2347035157417</span></li>
+                <li class="d-block mb-3"><span class="d-block text-black">Email:</span><span>support@realdesigngate.com</span></li>
               </ul>
             </div>
           </div>

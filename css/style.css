@@ -350,6 +350,203 @@ h1, h2, h3, h4, h5,
     position: relative;
     z-index: 1; }
 
+
+  .testimonial-area {
+    /* padding: 180px 0 0 0; */
+    position: relative;
+  }
+
+  .single-testimonial{
+    color: #fff;
+    padding-left: 75px;
+    position: relative;
+    margin: 0 15px 15px;
+  }
+
+  header .carousel-inner .item {
+    height: 100vh;
+  }
+
+  .banner {
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }  
+
+  .img-area {
+    border-radius: 50%;
+    height: 150px;
+    left: 0;
+    margin-top: -75px;
+    position: absolute;
+    top: 50%;
+    width: 150px;
+  }
+
+  .testi-text {
+    background: #fff;
+    padding: 40px 20px 40px 100px;
+    color: #262626;
+  }
+
+  .img-area > img {
+    background: linear-gradient(to bottom, darkcyan, white);
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    padding: 5px;
+  }
+
+  .testi-text h4 {
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+
+  .testi-text h4 span {
+    display: block;
+    font-size: 14px;
+  }
+
+  .testi-text p {
+    line-height: 25px;
+    font-size: 18px;
+  }
+
+  .single-testimonial:hover .testi-text {
+    background: blue;
+    color: #fff;
+    transition: 0.9s;
+  }
+
+  .testimonial-area div.owl-nav {
+    color: #fb7400;
+    display: inline-block;
+    font-size: 55px;
+    height: 60px;
+    margin-top: -30px;
+    text-align: center;
+    width: 40px;
+    transition: 0.3s;
+  }
+
+  .owl-prev, .owl-next {
+    position: absolute;
+  }
+
+  .owl-prev {
+    left: -30px;
+    top: 100px;
+  }
+
+  .owl-next {
+    right: -30px;
+    top: 100px;
+  }
+
+  .carousel-caption{
+    padding:bottom 250px;
+  }
+
+  .carousel-caption h2 {
+    font-size: 60px;
+    color: #fff !important;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .carousel-caption h2 span {
+    color: #fb7400;
+    font-size: 45px;
+  }
+
+  .carousel-caption h3 {
+    color: #ebebeb;
+  }
+
+  .carousel-caption a {
+    background: #fb7400;
+    padding: 15px 35px;
+    display: inline-block;
+    margin-top: 15px;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 25px;
+  }
+
+  .carousel-control.right {
+    background-image: none;
+  }
+
+  .carousel-control.left {
+    background-image: none;
+  }
+
+  .carousel-indicators .active {
+    background-color: #fb7400;
+  }
+
+  /* responsive css */
+  @media only screen and (max-width: 767px){
+    .testimonial-area {
+      padding: 15px 0;
+    }
+    .single-testimonial {
+      padding-left: 0;
+      padding-top: 75px;
+    }
+    .img-area {
+      left: 50%;
+      margin-left: -75px;
+      top: 75px;
+    }
+    .testi-text {
+      padding: 80px 25px 25px;
+    }
+    .testi-text h4 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .test-text p {
+      font-size: 16px;
+    }
+    .owl-prev {
+      left: -15px;
+      top: 150px;
+      font-size: 30px;
+    }
+    .owl-next {
+      right: -15px;
+      top: 150px;
+      font-size: 30px;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 991px){
+      .carousel-caption{
+        padding-bottom: 350px;
+      }
+      .carousel-caption h2 {
+        font-size: 50px;
+      }
+  }
+
+  @media only screen and (max-width: 767px){
+    .carousel-caption{
+      padding-bottom: 120px;
+    }
+    .carousel-caption h2 {
+      font-size: 25px;
+    }
+    .carousel-caption h3 {
+      font-size: 18px;
+    }
+    .carousel-caption a {
+      padding: 10px 25px;
+    }
+  }
+
 @media (max-width: 991.98px) {
   .img-md-fluid {
     max-width: 100%; } }
@@ -1214,6 +1411,10 @@ h1, h2, h3, h4, h5,
   .ftco-cover-1.innerpage, .ftco-cover-1.innerpage .container > .row {
     height: 90vh;
     min-height: 700px; }
+  .ftco-cover-1.innerbanner, .ftco-cover-1.innerbanner .container > .row {
+    height: 60vh;
+    min-height: 400px; 
+  }  
   .ftco-cover-1 > .container {
     position: relative; }
   .ftco-cover-1.overlay {
@@ -1780,3 +1981,4 @@ form .btn {
   .project-item:hover .project-item-overlay {
     opacity: 1;
     visibility: visible; }
+

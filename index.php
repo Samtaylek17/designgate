@@ -23,14 +23,55 @@ $email = ((isset($_POST['email']))?sanitize($_POST['email']):'');
 $email = trim($email);
 $message = ((isset($_POST['message']))?sanitize($_POST['message']):'');
 $message = trim($message);
-            
-$con->query("INSERT INTO contact (firstname, lastname, email, message) 
+
+if($_POST){
+  $con->query("INSERT INTO contact (firstname, lastname, email, message) 
 VALUES ('$firstname','$lastname','$email','$message')");
+}            
+
             
         
 ?>
+<div id="carouselExampleCaptions" class="carousel slide" style="min-height: 0;" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="banner" style="background-image: linear-gradient(to right, rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url(images/1.jpg);"></div>
+                  <div class="carousel-caption d-md-block">
+                    <h2 class="animated bounceInRight" style="animation-delay: 1s">We Provide End-to-end <br><span>Vdc Consultancy, Advisory and Training</span></h2>
+                    <h3 class="animated bounceInLeft" style="animation-delay: 2s">Our services are the choice of leaders <br>in the AECO industry</h3>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                <div class="banner" style="background-image: linear-gradient(to right, rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url(images/2.jpg);"></div>
+                  <div class="carousel-caption d-md-block">
+                    <h2 class="animated slideInDown" style="animation-delay: 1s">We focus on Design Innovation and process <span> automation by leveraging Bim and cad capabilities</span></h2>
+                    <h3 class="animated fadeInUp" style="animation-delay: 2s">Our services are the choice of leaders <br>in the AECO industry</h3>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                <div class="banner" style="background-image: linear-gradient(to right, rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url(images/3.jpg);"></div>
+                  <div class="carousel-caption d-md-block">
+                    <h2 class="animated zoomIn" style="animation-delay: 1s">We Provide Architecture, <span>Engineering and construction solutions</span></h2>
+                    <h3 class="animated bounceInLeft" style="animation-delay: 2s">Our services are the choice of leaders <br>in the AECO industry</h3>
+                  </div>
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
 
-      <div class="ftco-blocks-cover-1">
+      <!-- <div class="ftco-blocks-cover-1">
       <div class="ftco-cover-1 overlay" style="background-image: url('images/hero_1.jpg')">
         <div class="container">
           <div class="row align-items-center">
@@ -47,123 +88,26 @@ VALUES ('$firstname','$lastname','$email','$message')");
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     
-    <div class="site-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-5 pr-md-5 mr-auto">
-            <h2 class="line-bottom">Do you have a project in mind? Get a Quotation today.</h2>
-            <p>If you have a project in mind or a construction idea, get in touch today and get 
-              a qoute as soon as possible.  </p>
-          </div>
-          <div class="col-md-6">
-            <div class="quick-contact-form bg-white">
-                <h2>Get Quotation</h2>
-                <form action="contact.php" method="post">
-                  <div class="form-group">
-                    <input type="text" name="firstname" class="form-control" placeholder="First Name" value="<?= $firstname ?>">
-                  </div>
-                  <div class="form-group">
-                    <input type="text" name="lastname" class="form-control" placeholder="Last Name" value="<?= $lastname ?>">
-                  </div>
-                  <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Email" value="<?= $email ?>">
-                  </div>
-                  <div class="form-group">
-                    <textarea name="message" class="form-control" id="" cols="30" rows="5" placeholder="Message" value="<?= $message ?>"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <input type="submit" value="Send Message" class="btn btn-primary px-5">
-                  </div>
-                </form>
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="site-section" style="background-color: #dedffe;">
+  
+<?php 
+    $result = $con->query("SELECT * FROM services");
+?>
+
+    <div class="site-section" style="background-color: #ececec;">
       <div class="container">
         <div class="row align-items-stretch">
+        <?php while($service = $result->fetch_assoc()) : ?>
           <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
             <div class="service-2 h-100">
-              <div class="svg">
-                <img src="images/flaticon/svg/001-renovation.svg" alt="Image" class="">
-              </div>
-
-              <h3><span>4D BIM - Construction Scheduling</span></h3>
-              <p>Manange complete site logistics hassle free with 4D construction scheduling, sequencing 
-                and timelier videos.
-              </p>
-
+              <h3><span><?= $service['title'] ?></span></h3>
+              <p><?= $service['description'] ?></p>
             </div>
           </div>
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100">
-              <div class="svg">
-                <img src="images/flaticon/svg/002-shovel.svg" alt="Image" class="">
-              </div>
-
-              <h3><span>5D BIM - Cost Estimation</span></h3>
-              <p>Estimate the costs of construction projects by extracting BOQs and materials with 5D
-                Modeling and quantity take-offs.
-              </p>
-
-            </div>
-          </div>
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100">
-              <div class="svg">
-                <img src="images/flaticon/svg/003-bulldozer.svg" alt="Image" class="">
-              </div>
-
-              <h3><span>BIM Consulting Services</span></h3>
-              <p>Strategize & migrate to BIM platforms for project management with our expert BIM consulting.</p>
-
-            </div>
-          </div>
-
-
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100">
-              <div class="svg">
-                <img src="images/flaticon/svg/004-house-plan.svg" alt="Image" class="">
-              </div>
-
-              <h3><span>Virtual Reality & BIM</span></h3>
-              <p>Leverage Virtual Reality solutions for immersive 3D designs & construction with lightweight
-                3D BIM models.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100">
-              <div class="svg">
-                <img src="images/flaticon/svg/005-fence.svg" alt="Image" class="">
-              </div>
-
-              <h3><span>BIM with Augmented Reality</span></h3>
-              <p>Explore the potential of as-built BIM 3D models with your augmented reality devices fr construction.
-              </p>
-
-            </div>
-          </div>
-          <div class="col-md-6 mb-5 mb-lg-5 col-lg-4">
-            <div class="service-2 h-100">
-              <div class="svg">
-                <img src="images/flaticon/svg/006-wheelbarrow.svg" alt="Image" class="">
-              </div>
-
-              <h3><span>BIM Outsourcing</span></h3>
-              <p>Discover the power of true BIM models with efficient outsourcing partnership with us for 
-                Revit BIM services.
-              </p>
-
-            </div>
-          </div>
-
+          <?php endwhile ?>
         </div>
       </div>
     </div>
@@ -173,7 +117,7 @@ VALUES ('$firstname','$lastname','$email','$message')");
         
         <div class="row mb-5">
           <div class="col-md-4 mr-auto">
-            <h2 class="line-bottom">We Are Leader In The Construction World</h2>
+            <h2 class="line-bottom">We Are Leaders in Complex BIM Management and Delivery</h2>
           </div>
           <div class="col-md-8 text-right">
             <nav class="custom-tab nav" role="tablist"  class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -190,14 +134,12 @@ VALUES ('$firstname','$lastname','$email','$message')");
               <div class="tab-pane fade show active" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab">
                 <div class="row">
                   <div class="col-md-7">
-                    <img src="images/BIM-ooo.jpeg" alt="Image" class="img-fluid">
+                    <img src="images/TECH.jpg" alt="Image" class="img-fluid">
                   </div>
                   <div class="col-md-4 ml-auto">
                     <h2 class="line-bottom">Technology</h2>
-                    <p>BIM (Building Information Modeling) is an intelligent 3D model-based process
-                      that gives architecture, engineering and construction (AEC) professionals
-                      the insight and tools to more efficiently plan, design, construct and manage 
-                      buildings and infrastructures.
+                    <p>We combine our experience as construction and engineering professionals with a passion for technology
+                      to improve the way construction and engineering projects are designed, built and operated.
                     </p>
                   </div>
                 </div>
@@ -205,22 +147,24 @@ VALUES ('$firstname','$lastname','$email','$message')");
               <div class="tab-pane fade" id="nav-two" role="tabpanel" aria-labelledby="nav-two-tab">
                 <div class="row">
                   <div class="col-md-7">
-                    <img src="images/hero_2.jpg" alt="Image" class="img-fluid">
+                    <img src="images/QUALITY.jpg" alt="Image" class="img-fluid">
                   </div>
                   <div class="col-md-4 ml-auto">
                     <h2 class="line-bottom">Quality</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium assumenda illum voluptatibus voluptas ratione error explicabo inventore obcaecati incidunt.</p>
+                    <p>DesignGate works leaders in the architecture, real estate, engineering and construction industries.</p>
                   </div>
                 </div>
               </div>
               <div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-three-tab">
                 <div class="row">
                   <div class="col-md-7">
-                    <img src="images/hero_3.jpg" alt="Image" class="img-fluid">
+                    <img src="images/STAFF.jpg" alt="Image" class="img-fluid">
                   </div>
                   <div class="col-md-4 ml-auto">
                     <h2 class="line-bottom">Staff</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos quibusdam voluptatum, nesciunt nulla laudantium corporis necessitatibus explicabo nobis sapiente!</p>
+                    <p>We have highly driven, smart and passionate architects, engineers, cost managers, project managers and portfolio managers
+                      to help transform your brief into reality.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -229,48 +173,65 @@ VALUES ('$firstname','$lastname','$email','$message')");
         </div>
       </div>
     </div>
+    <div class="col-md-4 mx-auto">
+      <h2 class="line-bottom text-center">Digitizing the Built Environment</h2>
+    </div>
+    <div class="row justify-content-center mb-5">
+    <iframe width="800" height="450" src="https://www.youtube.com/embed/SIl2CUF1TIc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
 
-    <div class="site-section bg-light">
-      <div class="container">
-        <div class="row mb-5">
+    
+    <div class="testimonial-area">
+        <div class="container">
+          <div class="row">
           <div class="col-md-4 mx-auto">
             <h2 class="line-bottom text-center">Testimonials</h2>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="testimonial-3">
-              <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure id accusantium similique temporibus nihil blanditiis adipisci aperiam, sapiente suscipit vero.</blockquote>
-              <div class="vcard d-flex align-items-center">
-                <div class="img-wrap mr-3">
-                  <img src="images/person_1.jpg" alt="Image" class="img-fluid">
+            <div class="col-md-12">
+              <div class="owl-carousel test-slides" id="testimonial-carousel">
+                <div class="item">
+                  <div class="single-testimonial">
+                    <div class="img-area">
+                      <img src="images/hero_1.jpg" alt="">
+                    </div>
+                    <div class="testi-text">
+                      <h4>Jane Doe <span>Web Designer</span></h4>
+                      <p>Lorem Ipsum dolo sit amet, consectetur adipisicing elit. 
+                        Cumque dolorem dolores  fugit incidunt nemo voluptate.</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <span class="d-block">John Smith</span>
-                  <span class="position">Client From Facebook</span>
+                <div class="item">
+                  <div class="single-testimonial">
+                    <div class="img-area">
+                      <img src="images/hero_2.jpg" alt="">
+                    </div>
+                    <div class="testi-text">
+                      <h4>James Fisher <span>Programmer</span></h4>
+                      <p>Lorem Ipsum dolo sit amet, consectetur adipisicing elit. 
+                        Cumque dolorem dolores  fugit incidunt nemo voluptate.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="single-testimonial">
+                    <div class="img-area">
+                      <img src="images/hero_3.jpg" alt="">
+                    </div>
+                    <div class="testi-text">
+                      <h4>John Doe <span>Graphics Designer</span></h4>
+                      <p>Lorem Ipsum dolo sit amet, consectetur adipisicing elit. 
+                        Cumque dolorem dolores  fugit incidunt nemo voluptate.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-6">
-            <div class="testimonial-3">
-              <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure id accusantium similique temporibus nihil blanditiis adipisci aperiam, sapiente suscipit vero.</blockquote>
-              <div class="vcard d-flex align-items-center">
-                <div class="img-wrap mr-3">
-                  <img src="images/person_2.jpg" alt="Image" class="img-fluid">
-                </div>
-                <div>
-                  <span class="d-block">John Smith</span>
-                  <span class="position">Client From Facebook</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
 
-    <div class="site-section">
+    <!-- <div class="site-section">
       <div class="container">
         <div class="row mb-4">
 
@@ -387,9 +348,9 @@ VALUES ('$firstname','$lastname','$email','$message')");
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="site-section">
+    <div>
       <div class="container">
         <div class="row mb-4">
 
@@ -403,28 +364,30 @@ VALUES ('$firstname','$lastname','$email','$message')");
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="post-entry-1 h-100">
               <a href="single.html">
-                <img src="images/img_4.jpg" alt="Image"
+                <img src="https://media.licdn.com/dms/image/C4D12AQHO7A0wMc9fzQ/article-cover_image-shrink_720_1280/0?e=1583366400&v=beta&t=bQpm5sQzXiwYxjMczqKEjQZEnUfqHhfP8A95ZeO1JMo" alt="Image"
                  class="img-fluid">
               </a>
               <div class="post-entry-1-contents">
                 
-                <h2><a href="single.html">We Are Leader In The Construction World</a></h2>
+                <h2><a href="single.html">Selling the Benefits of BIM</a></h2>
                 <span class="meta d-inline-block mb-3">July 17, 2019 <span class="mx-2">by</span> <a href="#">Admin</a></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore harum molestias consectetur.</p>
+                <p>Building Information Modelling has become a buzzword in the AEC 
+                  industry but while BIM is believed to enhance collaboration, increase efficiency... <a href="https://www.linkedin.com/pulse/selling-benefits-bim-design-gate/">Read More</p>
               </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="post-entry-1 h-100">
               <a href="single.html">
-                <img src="images/img_2.jpg" alt="Image"
+                <img src="https://media.licdn.com/dms/image/C4D12AQEDaItSHnEhtQ/article-cover_image-shrink_720_1280/0?e=1583366400&v=beta&t=Lny0vZakQil4IlUn-61olSN6Zod2oFGHRFXRQQYU1uU" alt="Image"
                  class="img-fluid">
               </a>
               <div class="post-entry-1-contents">
                 
-                <h2><a href="single.html">We Are Leader In The Construction World</a></h2>
+                <h2><a href="single.html">Digital-Disruption with BIM and Internet of Things (IoT)</a></h2>
                 <span class="meta d-inline-block mb-3">July 17, 2019 <span class="mx-2">by</span> <a href="#">Admin</a></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore harum molestias consectetur.</p>
+                <p>Did you know we spend 20+ hours of each day in buildings or some form of shelter? This statistics amongst other growing 
+                  concerns about global warming further...<a href="https://www.linkedin.com/pulse/how-iot-impacting-construction-industry-design-gate/">Read More</a></p>
               </div>
             </div>
           </div>
@@ -432,14 +395,15 @@ VALUES ('$firstname','$lastname','$email','$message')");
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="post-entry-1 h-100">
               <a href="single.html">
-                <img src="images/img_3.jpg" alt="Image"
+                <img src="https://media.licdn.com/dms/image/C4D12AQHKlohx715xKQ/article-inline_image-shrink_1000_1488/0?e=1583366400&v=beta&t=SOdkvHApfacR0oK57TOXi4GOy0RQ2bDL85tKGI6HboE" alt="Image"
                  class="img-fluid">
               </a>
               <div class="post-entry-1-contents">
                 
-                <h2><a href="single.html">We Are Leader In The Construction World</a></h2>
+                <h2><a href="single.html">Building Information Modelling</a></h2>
                 <span class="meta d-inline-block mb-3">July 17, 2019 <span class="mx-2">by</span> <a href="#">Admin</a></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore harum molestias consectetur.</p>
+                <p>Every process has a sequence, and BIM is not an exception. One can never discuss about BIM without reference to the 
+                  levels of maturity and their significance... <a href="https://www.linkedin.com/pulse/levels-bim-design-gate/">Read More</a></a></p>
               </div>
             </div>
           </div>
@@ -447,6 +411,6 @@ VALUES ('$firstname','$lastname','$email','$message')");
       </div>
     </div>
   
-<?php include 'includes/footer.php' ?>
+<?php include "includes/footer.php" ?>
 
     
